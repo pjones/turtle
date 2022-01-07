@@ -1,0 +1,35 @@
+; https://datatracker.ietf.org/doc/html/rfc5234
+
+entry      = *space *(command *space) [comment]
+
+command    = pen-down / pen-up / select-pen / draw
+
+pen-down   = "d"
+
+pen-up     = "u"
+
+select-pen = "p" *space number
+
+draw       = ("n" / "e" / "s" / "w") *space number
+
+comment    = "#" *vchar eol
+
+number     = 1*digit
+
+digit      = "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
+
+space      = %x09 / %x0A / %x0D / %x20
+
+; visible characters
+vchar      = %x09 / %x20 / %x21-7E
+
+; end of line
+eol        = crlf / lf
+
+; carriage return
+cr         = %x0D
+
+; line feed
+lf         = %x0A
+
+crlf       = cr lf
